@@ -24,4 +24,7 @@ app.listen(PORT, () => {
     console.log(`Server connected at port ${PORT}`)
 })
 
+app.use('/', (req, res) => {
+    res.send('Welcome to employee API -syukranDev')
+})
 app.use('/api/employee', employeeRoutes)
