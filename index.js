@@ -13,18 +13,19 @@ mongoose.connect(mongoURI, { useNewUrlParser: true })
 const db = mongoose.connection
 
 db.on('error', err => console.log(err))
-db.once('open', err => console.log('Databse connection successfully'))
+db.once('open', err => console.log('Database connection successfully'))
 
 // app.use(morgan(dev))
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use(bodyParser.json())
 
+app.get('/', (req, res) => {
+    console.log('Welcome to employee API -syukranDev')
+    res.send('Welcome to employee API -syukranDev')
+})
+app.use('/api/employee', employeeRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server connected at port ${PORT}`)
 })
 
-app.use('/', (req, res) => {
-    res.send('Welcome to employee API -syukranDev')
-})
-app.use('/api/employee', employeeRoutes)
